@@ -316,5 +316,3 @@ fetch(url, FETCH_OPTIONS)
 > There is no PATCH method for contacts
 
 ---
-
----
