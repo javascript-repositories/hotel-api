@@ -19,11 +19,9 @@ You can add header values using the second parameter of the fetch call.
 ```js
 const KEY = "your-key";
 const BASE_URL = "https://us-central1-noroff-final-exam.cloudfunctions.net/api/v1/";
-const FETCH_OPTIONS = {
-    headers: {
-        "Content-Type": "application/json",
-        key: KEY,
-    },
+const headers = {
+    "Content-Type": "application/json",
+    key: KEY,
 };
 ```
 
@@ -49,7 +47,7 @@ selfCatering?: boolean
 Import these for every call:
 
 ```js
-import { BASE_URL, FETCH_OPTIONS } from "../path/to/constants";
+import { BASE_URL, headers } from "../path/to/constants";
 ```
 
 ### Fetch all establishments - a `GET` request
@@ -58,8 +56,9 @@ import { BASE_URL, FETCH_OPTIONS } from "../path/to/constants";
 
 ```js
 const url = BASE_URL + "establishments";
+const options = { headers };
 
-fetch(url, FETCH_OPTIONS)
+fetch(url, options)
     .then((r) => r.json())
     .then((j) => console.log(j));
 ```
@@ -78,8 +77,9 @@ In Postman.
 const id = "id-of-establishment";
 
 const url = BASE_URL + "establishments/" + id;
+const options = { headers };
 
-fetch(url, FETCH_OPTIONS)
+fetch(url, options)
     .then((r) => r.json())
     .then((j) => console.log(j));
 ```
@@ -103,14 +103,10 @@ const newEstablishment = {
     // ...other properties
 };
 
-// when creating an establishment we need to use the POST method
-FETCH_OPTIONS.method = "POST";
-
-// serialise the data
-FETCH_OPTIONS.body = JSON.stringify(newEstablishment);
+const options = { headers, method: "POST", body: JSON.stringify(newEstablishment) };
 
 // send every
-fetch(url, FETCH_OPTIONS)
+fetch(url, options)
     .then((r) => r.json())
     .then((j) => console.log(j));
 ```
@@ -140,11 +136,9 @@ const updatedEstablishment = {
     // ...other properties
 };
 
-FETCH_OPTIONS.method = "PATCH";
+const options = { headers, method: "PATCH", body: JSON.stringify(updatedEstablishment) };
 
-FETCH_OPTIONS.body = JSON.stringify(updatedEstablishment);
-
-fetch(url, FETCH_OPTIONS)
+fetch(url, options)
     .then((r) => r.json())
     .then((j) => console.log(j));
 ```
@@ -163,9 +157,9 @@ Body:
 const id = "id-of-establishment-to-delete";
 const url = BASE_URL + "establishments/" + id;
 
-FETCH_OPTIONS.method = "DELETE";
+const options = { headers, method: "DELETE" };
 
-fetch(url, FETCH_OPTIONS);
+fetch(url, options);
 ```
 
 Postman headers - same as GET request.
@@ -192,8 +186,9 @@ checkOut: Date;
 
 ```js
 const url = BASE_URL + "enquiries";
+const options = { headers };
 
-fetch(url, FETCH_OPTIONS)
+fetch(url, options)
     .then((r) => r.json())
     .then((j) => console.log(j));
 ```
@@ -205,8 +200,9 @@ fetch(url, FETCH_OPTIONS)
 ```js
 const id = "an-id-to-fetch";
 const url = BASE_URL + "enquiries/" + id;
+const options = { headers };
 
-fetch(url, FETCH_OPTIONS)
+fetch(url, options)
     .then((r) => r.json())
     .then((j) => console.log(j));
 ```
@@ -227,12 +223,9 @@ const data = {
     checkOut: "May 29 2020",
 };
 
-FETCH_OPTIONS.method = "POST";
+const options = { headers, method: "POST", body: JSON.stringify(data) };
 
-FETCH_OPTIONS.body = JSON.stringify(data);
-
-// send every
-fetch(url, FETCH_OPTIONS)
+fetch(url, options)
     .then((r) => r.json())
     .then((j) => console.log(j));
 ```
@@ -244,10 +237,9 @@ fetch(url, FETCH_OPTIONS)
 ```js
 const id = "id-of-enquiry-to-delete";
 const url = BASE_URL + "enquiries/" + id;
+const options = { headers, method: "DELETE" };
 
-FETCH_OPTIONS.method = "DELETE";
-
-fetch(url, FETCH_OPTIONS);
+fetch(url, options);
 ```
 
 ---
@@ -270,8 +262,9 @@ message: string;
 
 ```js
 const url = BASE_URL + "contacts";
+const options = { headers };
 
-fetch(url, FETCH_OPTIONS)
+fetch(url, options)
     .then((r) => r.json())
     .then((j) => console.log(j));
 ```
@@ -283,8 +276,9 @@ fetch(url, FETCH_OPTIONS)
 ```js
 const id = "an-id-to-fetch";
 const url = BASE_URL + "contacts/" + id;
+const options = { headers };
 
-fetch(url, FETCH_OPTIONS)
+fetch(url, options)
     .then((r) => r.json())
     .then((j) => console.log(j));
 ```
@@ -302,10 +296,9 @@ const data = {
     message: "What's the haps, chaps?",
 };
 
-FETCH_OPTIONS.method = "POST";
-FETCH_OPTIONS.body = JSON.stringify(data);
+const options = { headers, method: "POST", body: JSON.stringify(data) };
 
-fetch(url, FETCH_OPTIONS)
+fetch(url, options)
     .then((r) => r.json())
     .then((j) => console.log(j));
 ```
@@ -317,10 +310,9 @@ fetch(url, FETCH_OPTIONS)
 ```js
 const id = "id-of-contact-to-delete";
 const url = BASE_URL + "contacts/" + id;
+const options = { headers, method: "DELETE" };
 
-FETCH_OPTIONS.method = "DELETE";
-
-fetch(url, FETCH_OPTIONS);
+fetch(url, options);
 ```
 
 ---
