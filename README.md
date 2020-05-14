@@ -1,6 +1,7 @@
 # HOLIDAZE - HOTEL BOOKING SITE HOSTED API DOCS
 
 Base URL
+
 ```js
 https://us-central1-noroff-final-exam.cloudfunctions.net/api/v1/
 ```
@@ -14,9 +15,10 @@ You can add header values using the second parameter of the fetch call.
 ### Constants
 
 `src/constants.js`:
+
 ```js
 const KEY = "your-key";
-const BASE_URL = "https://us-central1-noroff-final-exam.cloudfunctions.net/api/";
+const BASE_URL = "https://us-central1-noroff-final-exam.cloudfunctions.net/api/v1/";
 const FETCH_OPTIONS = {
     headers: {
         "Content-Type": "application/json",
@@ -57,10 +59,12 @@ import { BASE_URL, FETCH_OPTIONS } from "../path/to/constants";
 ```js
 const url = BASE_URL + "establishments";
 
-fetch(url, FETCH_OPTIONS).then(r => r.json()).then(j => console.log(j));
+fetch(url, FETCH_OPTIONS)
+    .then((r) => r.json())
+    .then((j) => console.log(j));
 ```
 
-In Postman. 
+In Postman.
 
 > Every request needs the `key` set in Headers.
 
@@ -71,11 +75,13 @@ In Postman.
 ### Fetch one establishment - a `GET` request
 
 ```js
-const id = "id-of-establishment"
+const id = "id-of-establishment";
 
 const url = BASE_URL + "establishments/" + id;
 
-fetch(url, FETCH_OPTIONS).then(r => r.json()).then(j => console.log(j))
+fetch(url, FETCH_OPTIONS)
+    .then((r) => r.json())
+    .then((j) => console.log(j));
 ```
 
 In Postman.
@@ -91,9 +97,9 @@ const url = BASE_URL + "establishments";
 
 // the data we want to send
 const newEstablishment = {
-    "name": "A hotel name",
-    "email": "someone@email.com",
-    "image": "path/to/image",
+    name: "A hotel name",
+    email: "someone@email.com",
+    image: "path/to/image",
     // ...other properties
 };
 
@@ -107,7 +113,6 @@ FETCH_OPTIONS.body = JSON.stringify(newEstablishment);
 fetch(url, FETCH_OPTIONS)
     .then((r) => r.json())
     .then((j) => console.log(j));
-
 ```
 
 In Postman.
@@ -130,8 +135,8 @@ const id = "id-of-establishment-to-update";
 const url = BASE_URL + "establishments/" + id;
 
 const updatedEstablishment = {
-    "name": "Updated name",
-    "email": "updated@email.com",    
+    name: "Updated name",
+    email: "updated@email.com",
     // ...other properties
 };
 
@@ -160,7 +165,7 @@ const url = BASE_URL + "establishments/" + id;
 
 FETCH_OPTIONS.method = "DELETE";
 
-fetch(url, FETCH_OPTIONS)
+fetch(url, FETCH_OPTIONS);
 ```
 
 Postman headers - same as GET request.
@@ -176,11 +181,11 @@ Body:
 Enquiries have the following properties:
 
 ```ts
-name: string
-email: string
-establishmentId: string
-checkIn: Date
-checkOut: Date
+name: string;
+email: string;
+establishmentId: string;
+checkIn: Date;
+checkOut: Date;
 ```
 
 ### Fetch all enquiries
@@ -188,7 +193,9 @@ checkOut: Date
 ```js
 const url = BASE_URL + "enquiries";
 
-fetch(url, FETCH_OPTIONS).then(r => r.json()).then(j => console.log(j))
+fetch(url, FETCH_OPTIONS)
+    .then((r) => r.json())
+    .then((j) => console.log(j));
 ```
 
 ---
@@ -199,7 +206,9 @@ fetch(url, FETCH_OPTIONS).then(r => r.json()).then(j => console.log(j))
 const id = "an-id-to-fetch";
 const url = BASE_URL + "enquiries/" + id;
 
-fetch(url, FETCH_OPTIONS).then(r => r.json()).then(j => console.log(j))
+fetch(url, FETCH_OPTIONS)
+    .then((r) => r.json())
+    .then((j) => console.log(j));
 ```
 
 ---
@@ -211,11 +220,11 @@ const url = BASE_URL + "enquiries";
 
 // the data we want to send
 const data = {
-    "name": "Bob The Sheep",
-    "email": "bob@sheepstuff.no",
-    "establishmentId": "an-id",
-    "checkIn": "May 28 2020",
-    "checkOut": "May 29 2020"
+    name: "Bob The Sheep",
+    email: "bob@sheepstuff.no",
+    establishmentId: "an-id",
+    checkIn: "May 28 2020",
+    checkOut: "May 29 2020",
 };
 
 FETCH_OPTIONS.method = "POST";
@@ -238,7 +247,7 @@ const url = BASE_URL + "enquiries/" + id;
 
 FETCH_OPTIONS.method = "DELETE";
 
-fetch(url, FETCH_OPTIONS)
+fetch(url, FETCH_OPTIONS);
 ```
 
 ---
@@ -252,18 +261,19 @@ fetch(url, FETCH_OPTIONS)
 Contact messages have the following properties:
 
 ```ts
-name: string
-email: string
-message: string
+name: string;
+email: string;
+message: string;
 ```
-
 
 ### Fetch all contacts
 
 ```js
 const url = BASE_URL + "contacts";
 
-fetch(url, FETCH_OPTIONS).then(r => r.json()).then(j => console.log(j))
+fetch(url, FETCH_OPTIONS)
+    .then((r) => r.json())
+    .then((j) => console.log(j));
 ```
 
 ---
@@ -274,7 +284,9 @@ fetch(url, FETCH_OPTIONS).then(r => r.json()).then(j => console.log(j))
 const id = "an-id-to-fetch";
 const url = BASE_URL + "contacts/" + id;
 
-fetch(url, FETCH_OPTIONS).then(r => r.json()).then(j => console.log(j))
+fetch(url, FETCH_OPTIONS)
+    .then((r) => r.json())
+    .then((j) => console.log(j));
 ```
 
 ---
@@ -285,9 +297,9 @@ fetch(url, FETCH_OPTIONS).then(r => r.json()).then(j => console.log(j))
 const url = BASE_URL + "contacts";
 
 const data = {
-    "name": "Fred The Cow",
-    "email": "fred@cowstuff.no",
-    "message": "What's the haps, chaps?",
+    name: "Fred The Cow",
+    email: "fred@cowstuff.no",
+    message: "What's the haps, chaps?",
 };
 
 FETCH_OPTIONS.method = "POST";
@@ -308,7 +320,7 @@ const url = BASE_URL + "contacts/" + id;
 
 FETCH_OPTIONS.method = "DELETE";
 
-fetch(url, FETCH_OPTIONS)
+fetch(url, FETCH_OPTIONS);
 ```
 
 ---
